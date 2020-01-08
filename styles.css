@@ -80,7 +80,8 @@ h1{
 }
 
 #equal_btn{
-	background: grey;
+	background: #393963;
+	opacity: 0.8;
 }
 
 #equal_btn:hover {

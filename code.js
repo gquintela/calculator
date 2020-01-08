@@ -5,10 +5,94 @@ var screen_value = document.getElementById("screen").innerHTML;
 var write_new_number = true;
 var acum_mode = true; 
 
+
+function write(n) {
+	if (write_new_number) {
+		document.getElementById("top_screen").innerHTML = n;
+		pressed_number = n;
+		write_new_number = false;
+	} else {
+		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
+		pressed_number = document.getElementById("top_screen").innerHTML;
+	}
+}
+
 // events: numbers
 document.getElementById("double_zero").addEventListener("click", () => write('00'));
 document.getElementById("zero").addEventListener("click", () => write(0));
 document.getElementById("one").addEventListener("click", () => write(1));
+
+addEventListener("keydown", function(event) {
+	switch(event.keyCode){
+		case 48:
+		case 96:
+			write(0);
+			break;
+		case 49:
+		case 97:
+			write(1);
+			break;
+		case 50:
+		case 98:
+			write(2);
+			break;
+		case 51:
+		case 99:
+			write(3);
+			break;
+		case 52:
+		case 100:
+			write(4);
+			break;
+		case 53:
+		case 101:
+			write(5);
+			break;
+		case 54:
+		case 102:
+			write(6);
+			break;
+		case 55:
+		case 103:
+			write(7);
+			break;
+		case 56:
+		case 104:
+			write(8);
+			break;
+		case 57:
+		case 105:
+			write(9);
+			break;
+		case 107:
+		case 187:
+			add(pressed_number);
+			break;
+		case 109:
+		case 189:
+			substract(pressed_number);
+			break;
+		case 56:
+		case 106:
+			multiply(pressed_number);
+			break;
+		case 111:
+		case 191:
+			division(pressed_number);
+			break;
+		case 27:
+			reset();
+			break;
+		case 8:
+			div_10(pressed_number);
+			break;
+		case 110:
+		case 190:
+			write('.');
+			break;
+	}
+});
+
 document.getElementById("two").addEventListener("click", () => write(2));
 document.getElementById("three").addEventListener("click", () => write(3));
 document.getElementById("four").addEventListener("click", () => write(4));
@@ -35,16 +119,7 @@ document.getElementById("acum_btn").addEventListener("click", () => acum_mode())
 // events: reset
 document.getElementById("reset").addEventListener("click", () => reset());
 
-function write(n) {
-	if (write_new_number) {
-		document.getElementById("top_screen").innerHTML = n;
-		pressed_number = n;
-		write_new_number = false;
-	} else {
-		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
-		pressed_number = document.getElementById("top_screen").innerHTML;
-	}
-}
+
 
 function init_function(){
 	document.getElementById("screen").innerHTML = 0;	
@@ -138,6 +213,7 @@ function normal_mode(){
 	document.getElementById("normal_btn").style.background = 'wheat';
 	document.getElementById("acum_btn").style.background = 'grey';
 	document.getElementById("equal_btn").style.background = '#aaaede';
+	document.getElementById("equal_btn").style.opacity = 0.9;
 	document.getElementById("equal_btn").style.cursor.hover = "pointer";
 }
 
@@ -147,3 +223,4 @@ function acum_mode(){
 	document.getElementById("equal_btn").style.background = 'grey';
 	document.getElementById("normal_btn").style.cursor.hover = 'auto';
 }
+
