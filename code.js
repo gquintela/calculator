@@ -22,6 +22,8 @@ document.getElementById("nine").addEventListener("click", () => write(9));
 document.getElementById("add").addEventListener("click", () => add(pressed_number));
 document.getElementById("substract").addEventListener("click", () => substract(pressed_number));
 document.getElementById("mod_10").addEventListener("click", () => mod_10());
+document.getElementById("multiply").addEventListener("click", () => multiply(pressed_number));
+document.getElementById("division").addEventListener("click", () => division(pressed_number));
 
 
 // events: change mode
@@ -60,6 +62,23 @@ function substract(pressed_number){
 	write_new_number = true;
 }
 
+function multiply(pressed_number){
+	acum *= parseInt(pressed_number);
+	document.getElementById("screen").innerHTML = acum;
+	write_new_number = true;
+}
+
+function division(pressed_number){
+	if (pressed_number == 0) {
+		alert("You can't divide by 0!");
+		write_new_number = true;
+	} else {
+		acum /= parseInt(pressed_number);
+		document.getElementById("screen").innerHTML = acum;
+		write_new_number = true;
+	}
+}
+
 function mod_10(){
 	if (Math.abs(document.getElementById("screen").innerHTML) == 0) {
 		write_new_number = true;
@@ -82,9 +101,13 @@ function reset(){
 function normal_mode(){
 	document.getElementById("normal_btn").style.background = '#6c69fd';
 	document.getElementById("acum_btn").style.background = '#aaaede';
+	document.getElementById("equal_btn").style.background = '#aaaede';
+	document.getElementById("equal_btn").style.cursor.hover = "pointer";
 }
 
 function acum_mode(){
 	document.getElementById("normal_btn").style.background = '#aaaede';
 	document.getElementById("acum_btn").style.background = '#6c69fd';
+	document.getElementById("equal_btn").style.background = 'grey';
+	document.getElementById("normal_btn").style.cursor.hover = 'auto';
 }
