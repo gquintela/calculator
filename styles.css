@@ -1,0 +1,78 @@
+body{
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+background: rgb(158,214,233);
+background: linear-gradient(90deg, 
+	rgba(158,214,233,1) 0%, 
+	rgba(58,197,199,0.3883928571428571) 35%, 
+	rgba(0,212,255,1) 100%);
+}
+
+#calculator{
+padding: 20px 500px;
+/*text-align: center;
+vertical-align: middle;*/
+/*width: 50%;*/
+}
+
+h1{
+	text-align: center;
+	color: blue;
+}
+
+.flex{
+	display: flex;
+}
+
+
+
+.btn{
+    font-size:35px;
+    padding:15px;
+    border: 2px solid;
+	width: 100px;
+	text-align: center;
+	background: #aaaede;
+	color: black;
+	text-align: center;
+
+	  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+#normal_btn, #acum_btn {
+	font-size: 20px;
+	margin: auto;
+	margin-top: 20px;
+}
+
+#acum_btn{
+	background: #6c69fd;
+}
+
+#screen{
+	text-align: right;
+    font-size:35px;
+    padding:15px;
+    border: 2px solid;
+	width: 502px;
+	height: 50px;
+	background: #eeefff;
+}
+
+.btn:hover {
+	background: rgb(182,182,182);
+	background: radial-gradient(circle, #999ce3 0%,
+	rgba(255,255,255,1) 35%, #602ce3 100%);
+	cursor: pointer;
+}
+
+.btn:active{
+	background: rgb(18,35,240);
+	background: radial-gradient(circle, rgba(18,35,240,1) 0%,
+	rgba(140,202,213,1) 35%, rgba(59,85,219,1) 100%);
+}
