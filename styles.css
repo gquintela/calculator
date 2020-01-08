@@ -8,7 +8,9 @@ background: linear-gradient(90deg,
 }
 
 #calculator{
-padding: 20px 500px;
+padding: 20px;
+width: 600px;
+margin: auto;
 /*text-align: center;
 vertical-align: middle;*/
 /*width: 50%;*/
@@ -46,8 +48,8 @@ h1{
 
 #normal_btn, #acum_btn {
 	font-size: 20px;
-	margin: auto;
-	margin-top: 20px;
+/*	margin: auto;
+	margin-top: 20px;*/
 }
 
 
@@ -72,8 +74,21 @@ h1{
     font-size:35px;
     padding:15px;
     border: 2px solid;
+    border-top: 0px;
 	width: 502px;
 	height: 50px;
+	background: #eeefff;
+}
+
+#top_screen{
+	font-size: 10px;
+	text-align: right;
+    font-size:35px;
+    padding:10px 25px;
+    border: 2px solid;
+    border-bottom: 0px;
+	width: 482px;
+	height: 20px;
 	background: #eeefff;
 }
 

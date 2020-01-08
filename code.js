@@ -17,13 +17,15 @@ document.getElementById("six").addEventListener("click", () => write(6));
 document.getElementById("seven").addEventListener("click", () => write(7));
 document.getElementById("eight").addEventListener("click", () => write(8));
 document.getElementById("nine").addEventListener("click", () => write(9));
+document.getElementById("dot").addEventListener("click", () => write('.'));
 
 // events: operations
 document.getElementById("add").addEventListener("click", () => add(pressed_number));
 document.getElementById("substract").addEventListener("click", () => substract(pressed_number));
-document.getElementById("mod_10").addEventListener("click", () => mod_10());
+document.getElementById("div_10").addEventListener("click", () => div_10());
 document.getElementById("multiply").addEventListener("click", () => multiply(pressed_number));
 document.getElementById("division").addEventListener("click", () => division(pressed_number));
+document.getElementById("pow").addEventListener("click", () => pow(pressed_number));
 
 
 // events: change mode
@@ -34,15 +36,19 @@ document.getElementById("acum_btn").addEventListener("click", () => acum_mode())
 document.getElementById("reset").addEventListener("click", () => reset());
 
 
+function isInt(n){
+    return Number(n) === n && n % 1 === 0;
+}
+
 
 function write(n) {
 	if (write_new_number) {
-		document.getElementById("screen").innerHTML = n;
+		document.getElementById("top_screen").innerHTML = n;
 		pressed_number = n;
 		write_new_number = false;
 	} else {
-		document.getElementById("screen").innerHTML = document.getElementById("screen").innerHTML.concat(n);
-		pressed_number = document.getElementById("screen").innerHTML;
+		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
+		pressed_number = document.getElementById("top_screen").innerHTML;
 	}
 }
 
@@ -51,19 +57,31 @@ function init_function(){
 }
 
 function add(pressed_number){
+	if (isInt(pressed_number ) && isInt(acum) ) {
 	acum += parseInt(pressed_number);
+	} else {
+	acum += parseFloat(pressed_number);
+	}
 	document.getElementById("screen").innerHTML = acum;
 	write_new_number = true;
 }
 
 function substract(pressed_number){
+	if (isInt(pressed_number ) && isInt(acum) ) {
 	acum -= parseInt(pressed_number);
+	} else {
+	acum -= parseFloat(pressed_number);
+	}
 	document.getElementById("screen").innerHTML = acum;
 	write_new_number = true;
 }
 
 function multiply(pressed_number){
+	if (isInt(pressed_number ) && isInt(acum) ) {
 	acum *= parseInt(pressed_number);
+	} else {
+	acum *= parseFloat(pressed_number);
+	}
 	document.getElementById("screen").innerHTML = acum;
 	write_new_number = true;
 }
@@ -73,21 +91,32 @@ function division(pressed_number){
 		alert("You can't divide by 0!");
 		write_new_number = true;
 	} else {
+		if (isInt(pressed_number ) && isInt(acum) ) {
 		acum /= parseInt(pressed_number);
+		} else {
+		acum /= parseFloat(pressed_number);
+		}
 		document.getElementById("screen").innerHTML = acum;
 		write_new_number = true;
 	}
 }
 
-function mod_10(){
-	if (Math.abs(document.getElementById("screen").innerHTML) == 0) {
+function pow(pressed_number){
+	acum = acum**parseInt(pressed_number);
+	document.getElementById("screen").innerHTML = acum;
+	write_new_number = true;
+}
+
+
+function div_10(){
+	if (Math.abs(document.getElementById("top_screen").innerHTML) == 0) {
 		write_new_number = true;
-	} else if (Math.abs(document.getElementById("screen").innerHTML < 10)){	
-		document.getElementById("screen").innerHTML = 0;
+	} else if (Math.abs(document.getElementById("top_screen").innerHTML < 10)){	
+		document.getElementById("top_screen").innerHTML = 0;
 		write_new_number = true;
 	} else {
-		acum = acum % 10;
-		document.getElementById("screen").innerHTML = document.getElementById("screen").innerHTML % 10;
+		pressed_number = Math.floor(acum / 10);
+		document.getElementById("top_screen").innerHTML = Math.floor(document.getElementById("top_screen").innerHTML / 10);
 	}
 }
 
@@ -95,6 +124,7 @@ function reset(){
 	acum = 0;
 	pressed_number = 0;
 	document.getElementById("screen").innerHTML = acum;	
+	document.getElementById("top_screen").innerHTML = acum;	
 	write_new_number = true;
 }
 
