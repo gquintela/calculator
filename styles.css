@@ -50,8 +50,21 @@ h1{
 	margin-top: 20px;
 }
 
+
 #acum_btn{
 	background: #6c69fd;
+}
+
+#acum_btn{
+	cursor: auto;
+}
+
+#equal_btn{
+	background: grey;
+}
+
+#equal_btn:hover {
+	cursor: auto;
 }
 
 #screen{
