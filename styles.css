@@ -1,24 +1,43 @@
 body{
+	margin: 0;
+	padding: 0;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-background: rgb(158,214,233);
+/*background: rgb(158,214,233);
 background: linear-gradient(90deg, 
 	rgba(158,214,233,1) 0%, 
 	rgba(58,197,199,0.3883928571428571) 35%, 
-	rgba(0,212,255,1) 100%);
+	rgba(0,212,255,1) 100%);*/
+}
+
+img{
+	position: fixed;
+	top: -50px;
+	margin: 0;
+	padding: 0;
+	height: 120%;
+	  filter: blur(2px);
+  -webkit-filter: blur(1px);
 }
 
 #calculator{
-padding: 20px;
+padding: 0px;
 width: 600px;
 margin: auto;
+opacity: 0.95;
 /*text-align: center;
 vertical-align: middle;*/
 /*width: 50%;*/
 }
 
 h1{
+	position: relative;
+	font-size: 60px;
 	text-align: center;
-	color: blue;
+	color: rgba(83,84,103,1);
+	font-family: bungee;
+	padding-right: 50px;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #eee;
 }
 
 .flex{
@@ -30,12 +49,14 @@ h1{
 .btn{
     font-size:35px;
     padding:15px;
+    margin: 1px;
     border: 2px solid;
 	width: 100px;
 	text-align: center;
-	background: #aaaede;
+	background: linear-gradient(36deg, rgba(203,204,223,1) 0%, rgba(121,124,153,1) 100%);
 	color: black;
 	text-align: center;
+	border-radius: 10px;
 
 	  -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -55,9 +76,6 @@ h1{
 
 #acum_btn{
 	background: #6c69fd;
-}
-
-#acum_btn{
 	cursor: auto;
 }
 
@@ -71,13 +89,15 @@ h1{
 
 #screen{
 	text-align: right;
-    font-size:35px;
+    font-size:55px;
     padding:15px;
     border: 2px solid;
     border-top: 0px;
-	width: 502px;
+	width: 510px;
 	height: 50px;
-	background: #eeefff;
+	background: linear-gradient(180deg, rgba(246,204,49,1) 0%, rgba(143,121,54,1) 90%);
+	/*background-color: wheat;*/
+	border-radius: 0 0 10px 10px;
 }
 
 #top_screen{
@@ -87,9 +107,11 @@ h1{
     padding:10px 25px;
     border: 2px solid;
     border-bottom: 0px;
-	width: 482px;
+	width: 490px;
 	height: 20px;
-	background: #eeefff;
+	background: linear-gradient(0deg, rgba(246,204,49,1) 0%, rgba(143,121,54,1) 90%);
+/*	background-color: wheat;*/
+	border-radius: 10px 10px 0 0;
 }
 
 .btn:hover {

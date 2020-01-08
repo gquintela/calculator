@@ -35,12 +35,6 @@ document.getElementById("acum_btn").addEventListener("click", () => acum_mode())
 // events: reset
 document.getElementById("reset").addEventListener("click", () => reset());
 
-
-function isInt(n){
-    return Number(n) === n && n % 1 === 0;
-}
-
-
 function write(n) {
 	if (write_new_number) {
 		document.getElementById("top_screen").innerHTML = n;
@@ -57,7 +51,7 @@ function init_function(){
 }
 
 function add(pressed_number){
-	if (isInt(pressed_number ) && isInt(acum) ) {
+	if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 	acum += parseInt(pressed_number);
 	} else {
 	acum += parseFloat(pressed_number);
@@ -67,7 +61,7 @@ function add(pressed_number){
 }
 
 function substract(pressed_number){
-	if (isInt(pressed_number ) && isInt(acum) ) {
+	if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 	acum -= parseInt(pressed_number);
 	} else {
 	acum -= parseFloat(pressed_number);
@@ -77,7 +71,7 @@ function substract(pressed_number){
 }
 
 function multiply(pressed_number){
-	if (isInt(pressed_number ) && isInt(acum) ) {
+	if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 	acum *= parseInt(pressed_number);
 	} else {
 	acum *= parseFloat(pressed_number);
@@ -91,7 +85,7 @@ function division(pressed_number){
 		alert("You can't divide by 0!");
 		write_new_number = true;
 	} else {
-		if (isInt(pressed_number ) && isInt(acum) ) {
+		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 		acum /= parseInt(pressed_number);
 		} else {
 		acum /= parseFloat(pressed_number);
@@ -102,21 +96,33 @@ function division(pressed_number){
 }
 
 function pow(pressed_number){
-	acum = acum**parseInt(pressed_number);
+	if (isNormalInteger(pressed_number)) {
+		acum = acum**parseInt(pressed_number);		
+	}else{
+		acum = acum**parseFloat(pressed_number);
+	}
 	document.getElementById("screen").innerHTML = acum;
 	write_new_number = true;
 }
 
+function isNormalInteger(str) {
+    var n = Math.floor(Number(str));
+    return n !== Infinity && String(n) === str && n >= 0;
+}
+
 
 function div_10(){
-	if (Math.abs(document.getElementById("top_screen").innerHTML) == 0) {
-		write_new_number = true;
-	} else if (Math.abs(document.getElementById("top_screen").innerHTML < 10)){	
+	if (Math.abs(document.getElementById("top_screen").innerHTML) < 10 && (isNormalInteger(document.getElementById("top_screen").innerHTML))){	
 		document.getElementById("top_screen").innerHTML = 0;
+		pressed_number = 0;
 		write_new_number = true;
+	} else if (isNormalInteger(document.getElementById("top_screen").innerHTML)){
+		pressed_number = Math.floor(pressed_number / 10);
+		document.getElementById("top_screen").innerHTML = pressed_number;
 	} else {
-		pressed_number = Math.floor(acum / 10);
-		document.getElementById("top_screen").innerHTML = Math.floor(document.getElementById("top_screen").innerHTML / 10);
+		pressed_number = 0;
+		document.getElementById("top_screen").innerHTML = pressed_number;
+		write_new_number = true;
 	}
 }
 
@@ -129,8 +135,8 @@ function reset(){
 }
 
 function normal_mode(){
-	document.getElementById("normal_btn").style.background = '#6c69fd';
-	document.getElementById("acum_btn").style.background = '#aaaede';
+	document.getElementById("normal_btn").style.background = 'wheat';
+	document.getElementById("acum_btn").style.background = 'grey';
 	document.getElementById("equal_btn").style.background = '#aaaede';
 	document.getElementById("equal_btn").style.cursor.hover = "pointer";
 }
