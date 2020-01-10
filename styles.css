@@ -1,7 +1,7 @@
 body{
 	margin: 0;
 	padding: 0;
-	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-family: "share tech mono", "Book Antiqua", 'Palatino', serif;
 /*background: rgb(158,214,233);
 background: linear-gradient(90deg, 
 	rgba(158,214,233,1) 0%, 
@@ -20,22 +20,24 @@ img{
 }
 
 #calculator{
-padding: 0px;
+padding: 4px;
 width: 600px;
 margin: auto;
 opacity: 0.95;
-/*text-align: center;
-vertical-align: middle;*/
-/*width: 50%;*/
+border:5px groove #999ce3;
+border-radius: 20px;
+background-color :rgba(100, 100, 100, 0.6);
+
 }
 
 h1{
+	margin-bottom: 10px;
 	position: relative;
 	font-size: 60px;
 	text-align: center;
 	color: rgba(83,84,103,1);
-	font-family: bungee;
-	padding-right: 50px;
+	font-family: 'bungee';
+	padding-right: 0px;
 	-webkit-text-stroke-width: 2px;
 	-webkit-text-stroke-color: #eee;
 }
@@ -45,7 +47,7 @@ h1{
 }
 
 .btn{
-    font-size:35px;
+    font-size:45px;
     padding:15px;
     margin: 1px;
     border: 2px solid;
@@ -55,9 +57,9 @@ h1{
 	color: black;
 	text-align: center;
 	border-radius: 10px;
+	flex: 1 1 auto;
 	
-
-	  -webkit-touch-callout: none; /* iOS Safari */
+	-webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
        -moz-user-select: none; /* Old versions of Firefox */
@@ -73,10 +75,8 @@ h1{
 	cursor: pointer;
 }
 
-#normal_btn.btn, #acum_btn.btn, #about_btn.btn {
-	font-size: 15px;
-	/* margin: auto; */
-	/* margin-top: 10px; */
+#normal_btn.btn, #acum_btn.btn, #about_btn.btn, #credits_btn, #return_btn {
+	font-size: 25px;
 }
 
 #acum_btn{
@@ -93,21 +93,21 @@ h1{
 }
 
 #return_btn{
-	font-size: 15px;
-	flex: 0 1 auto;
+	position: relative;
 	width: 80px;
-	/* height: 100px; */
-	margin-left: auto;              /* new */
+	margin: auto;              /* new */
 	cursor: pointer;
+	
 }
 
 #screen{
 	text-align: right;
     font-size:55px;
-    padding:15px;
+	padding:15px;
+	margin-bottom: 15px;
     border: 2px solid;
     border-top: 0px;
-	width: 510px;
+	width: 565px;
 	height: 50px;
 	background: linear-gradient(180deg, rgba(246,204,49,1) 0%, rgba(143,121,54,1) 90%);
 	border-radius: 0 0 10px 10px;
@@ -120,7 +120,7 @@ h1{
     padding:10px 25px;
     border: 2px solid;
     border-bottom: 0px;
-	width: 490px;
+	width: 545px;
 	height: 20px;
 	background: linear-gradient(0deg, rgba(246,204,49,1) 0%, rgba(143,121,54,1) 90%);
 	border-radius: 10px 10px 0 0;

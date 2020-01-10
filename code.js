@@ -120,6 +120,9 @@ document.getElementById("acum_btn").addEventListener("click", () => acum_mode())
 //about mode
 document.getElementById("about_btn").addEventListener("click", () => about_mode());
 
+//credits
+document.getElementById("credits_btn").addEventListener("click", () => show_credits());
+
 //return
 document.getElementById("return_btn").addEventListener("click", () => return_to_calc());
 
@@ -268,26 +271,44 @@ function acum_mode(){
 	document.getElementById("equal_btn").style.opacity = 0.5;
 }
 
-function about_mode(){
-	document.getElementById('screen').classList.add('hide');
-	document.getElementById('top_screen').classList.add('hide');
-	const elements = document.getElementsByClassName("btn");
+function hide_calc(){
+	// document.getElementById('screen').classList.add('hide');
+	// document.getElementById('top_screen').classList.add('hide');
+	// const elements = document.getElementsByClassName("btn");
 
-	const length = elements.length;
-	for (let i = 0; i < length; i++) {
-		elements[i].classList.add("hide");
-	}
+	// const length = elements.length;
+	// for (let i = 0; i < length; i++) {
+	// 	elements[i].classList.add("hide");
+	// }
+	document.getElementById("calculator").classList.add('hide');
+}
+
+function show_calc(){
+	// document.getElementById('screen').classList.remove('hide');
+	// document.getElementById('top_screen').classList.remove('hide');
+	// const elements = document.getElementsByClassName("btn");
+
+	// const length = elements.length;
+	// for (let i = 0; i < length; i++) {
+	// 	elements[i].classList.remove("hide");
+	// }
+	document.getElementById("calculator").classList.remove('hide');
+}
+
+
+function about_mode(){
+	hide_calc();
+	document.getElementById("return_btn").classList.remove('hide');
 	document.getElementById("return_btn").classList.remove('hide');
 }
 
 function return_to_calc(){
-	document.getElementById('screen').classList.remove('hide');
-	document.getElementById('top_screen').classList.remove('hide');
-	const elements = document.getElementsByClassName("btn");
-
-	const length = elements.length;
-	for (let i = 0; i < length; i++) {
-		elements[i].classList.remove("hide");
-	}
+	show_calc();
 	document.getElementById("return_btn").classList.add('hide');
+}
+
+function show_credits(){
+	hide_calc();
+	document.getElementById("return_btn").classList.remove('hide');
+
 }
