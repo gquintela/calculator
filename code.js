@@ -1,20 +1,31 @@
 // global variables
-var acum = 0;
-var pressed_number = 0;
-var screen_value = document.getElementById("screen").innerHTML;
-var write_new_number = true;
-var mode = acum; 
-
+let acum = 0;
+let pressed_number = 0;
+let screen_value = document.getElementById("screen").innerHTML;
+let write_new_number = true;
+let mode = acum; 
 
 function write(n) {
-	if (write_new_number) {
-		document.getElementById("top_screen").innerHTML = n;
-		pressed_number = n;
-		write_new_number = false;
+	if (mode == "normal") {
+		if (write_new_number) {
+			document.getElementById("top_screen").innerHTML = n;
+			pressed_number = n;
+			write_new_number = false;
+	}	else{
+			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
+			pressed_number = document.getElementById("top_screen").innerHTML;
+		}
 	} else {
-		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
-		pressed_number = document.getElementById("top_screen").innerHTML;
+		if (write_new_number) {
+			document.getElementById("top_screen").innerHTML = n;
+			pressed_number = n;
+			write_new_number = false;
+	}	else{
+			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
+			pressed_number = document.getElementById("top_screen").innerHTML;
+		}
 	}
+
 }
 
 // events: numbers
@@ -110,6 +121,7 @@ document.getElementById("div_10").addEventListener("click", () => div_10());
 document.getElementById("multiply").addEventListener("click", () => multiply(pressed_number));
 document.getElementById("division").addEventListener("click", () => division(pressed_number));
 document.getElementById("pow").addEventListener("click", () => pow(pressed_number));
+document.getElementById("equal_btn").addEventListener("click", () => equal(pressed_number));
 
 
 
@@ -137,7 +149,7 @@ function init_function(){
 
 function add(pressed_number){
 	if(mode == 'normal'){
-
+			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat('+');
 	}else{
 		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 			acum += parseInt(pressed_number);
@@ -151,7 +163,7 @@ function add(pressed_number){
 
 function substract(pressed_number){
 	if(mode == 'normal'){
-
+		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat('-');
 	}else{
 		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 			acum -= parseInt(pressed_number);
@@ -165,7 +177,7 @@ function substract(pressed_number){
 
 function multiply(pressed_number){
 	if(mode == 'normal'){
-
+		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat('*');
 	}else{
 		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 			acum *= parseInt(pressed_number);
@@ -179,7 +191,7 @@ function multiply(pressed_number){
 
 function division(pressed_number){
 	if(mode == 'normal'){
-
+		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat('/');
 	}else{
 		if (pressed_number == 0) {
 			alert("You can't divide by 0!");
@@ -218,7 +230,9 @@ function isNormalInteger(str) {
 
 function div_10(){
 	if(mode == 'normal'){
-
+		let str= document.getElementById("top_screen").innerHTML;
+		let newStr = str.substring(0, str.length - 1);
+		document.getElementById("top_screen").innerHTML = newStr;
 	}else{
 		if (Math.abs(document.getElementById("top_screen").innerHTML) < 10 && (isNormalInteger(document.getElementById("top_screen").innerHTML))){	
 			document.getElementById("top_screen").innerHTML = 0;
@@ -311,4 +325,11 @@ function show_credits(){
 	hide_calc();
 	document.getElementById("return_btn").classList.remove('hide');
 
+}
+
+function equal (){
+	let result = document.getElementById("top_screen").innerHTML;
+	for (let i = 0; i < result.length; i++) {
+ 		alert(result.charAt(i));
+	}
 }
