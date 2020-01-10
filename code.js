@@ -3,7 +3,7 @@ var acum = 0;
 var pressed_number = 0;
 var screen_value = document.getElementById("screen").innerHTML;
 var write_new_number = true;
-var acum_mode = true; 
+var mode = acum; 
 
 
 function write(n) {
@@ -210,17 +210,26 @@ function reset(){
 }
 
 function normal_mode(){
-	document.getElementById("normal_btn").style.background = 'wheat';
-	document.getElementById("acum_btn").style.background = 'grey';
-	document.getElementById("equal_btn").style.background = '#aaaede';
-	document.getElementById("equal_btn").style.opacity = 0.9;
-	document.getElementById("equal_btn").style.cursor.hover = "pointer";
+	reset();
+	document.getElementById("normal_btn").style.borderColor = 'red';
+	document.getElementById("acum_btn").style.borderColor = 'black';
+	document.getElementById("normal_btn").classList.remove('animation');
+	document.getElementById("acum_btn").classList.add('animation');
+	document.getElementById("equal_btn").classList.add('animation');
+	document.getElementById("normal_btn").style.cursor = "auto";
+	document.getElementById("acum_btn").style.cursor = "pointer";
+	document.getElementById("equal_btn").style.opacity = 1;
 }
 
 function acum_mode(){
-	document.getElementById("normal_btn").style.background = '#aaaede';
-	document.getElementById("acum_btn").style.background = '#6c69fd';
-	document.getElementById("equal_btn").style.background = 'grey';
-	document.getElementById("normal_btn").style.cursor.hover = 'auto';
+	reset();
+	document.getElementById("normal_btn").style.borderColor = 'black';
+	document.getElementById("acum_btn").style.borderColor = 'red';
+	document.getElementById("normal_btn").classList.add('animation');
+	document.getElementById("acum_btn").classList.remove('animation');
+	document.getElementById("equal_btn").classList.remove('animation');
+	document.getElementById("acum_btn").style.cursor = "auto";
+	document.getElementById("acum_btn").style.cursor = "pointer";
+	document.getElementById("equal_btn").style.opacity = 0.5;
 }
 
