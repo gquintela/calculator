@@ -112,9 +112,16 @@ document.getElementById("division").addEventListener("click", () => division(pre
 document.getElementById("pow").addEventListener("click", () => pow(pressed_number));
 
 
+
 // events: change mode
 document.getElementById("normal_btn").addEventListener("click", () => normal_mode());
 document.getElementById("acum_btn").addEventListener("click", () => acum_mode());
+
+//about mode
+document.getElementById("about_btn").addEventListener("click", () => about_mode());
+
+//return
+document.getElementById("return_btn").addEventListener("click", () => return_to_calc());
 
 // events: reset
 document.getElementById("reset").addEventListener("click", () => reset());
@@ -126,58 +133,78 @@ function init_function(){
 }
 
 function add(pressed_number){
-	if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
-	acum += parseInt(pressed_number);
-	} else {
-	acum += parseFloat(pressed_number);
-	}
-	document.getElementById("screen").innerHTML = acum;
-	write_new_number = true;
-}
+	if(mode == 'normal'){
 
-function substract(pressed_number){
-	if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
-	acum -= parseInt(pressed_number);
-	} else {
-	acum -= parseFloat(pressed_number);
-	}
-	document.getElementById("screen").innerHTML = acum;
-	write_new_number = true;
-}
-
-function multiply(pressed_number){
-	if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
-	acum *= parseInt(pressed_number);
-	} else {
-	acum *= parseFloat(pressed_number);
-	}
-	document.getElementById("screen").innerHTML = acum;
-	write_new_number = true;
-}
-
-function division(pressed_number){
-	if (pressed_number == 0) {
-		alert("You can't divide by 0!");
-		write_new_number = true;
-	} else {
+	}else{
 		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
-		acum /= parseInt(pressed_number);
+			acum += parseInt(pressed_number);
 		} else {
-		acum /= parseFloat(pressed_number);
+			acum += parseFloat(pressed_number);
 		}
 		document.getElementById("screen").innerHTML = acum;
 		write_new_number = true;
 	}
 }
 
-function pow(pressed_number){
-	if (isNormalInteger(pressed_number)) {
-		acum = acum**parseInt(pressed_number);		
+function substract(pressed_number){
+	if(mode == 'normal'){
+
 	}else{
-		acum = acum**parseFloat(pressed_number);
+		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
+			acum -= parseInt(pressed_number);
+		} else {
+			acum -= parseFloat(pressed_number);
+		}
+		document.getElementById("screen").innerHTML = acum;
+		write_new_number = true;
 	}
-	document.getElementById("screen").innerHTML = acum;
-	write_new_number = true;
+}
+
+function multiply(pressed_number){
+	if(mode == 'normal'){
+
+	}else{
+		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
+			acum *= parseInt(pressed_number);
+		} else {
+			acum *= parseFloat(pressed_number);
+		}
+		document.getElementById("screen").innerHTML = acum;
+		write_new_number = true;
+	}
+}
+
+function division(pressed_number){
+	if(mode == 'normal'){
+
+	}else{
+		if (pressed_number == 0) {
+			alert("You can't divide by 0!");
+			write_new_number = true;
+		} else {
+			if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
+				acum /= parseInt(pressed_number);
+			} else {
+				acum /= parseFloat(pressed_number);
+			}
+			document.getElementById("screen").innerHTML = acum;
+			write_new_number = true;
+		}
+	}
+}
+
+function pow(pressed_number){
+	if(mode == 'normal'){
+
+	}else{
+		if (isNormalInteger(pressed_number)) {
+			acum = acum**parseInt(pressed_number);		
+		}else{
+			acum = acum**parseFloat(pressed_number);
+		}
+		document.getElementById("screen").innerHTML = acum;
+		write_new_number = true;
+	}
 }
 
 function isNormalInteger(str) {
@@ -187,17 +214,21 @@ function isNormalInteger(str) {
 
 
 function div_10(){
-	if (Math.abs(document.getElementById("top_screen").innerHTML) < 10 && (isNormalInteger(document.getElementById("top_screen").innerHTML))){	
-		document.getElementById("top_screen").innerHTML = 0;
-		pressed_number = 0;
-		write_new_number = true;
-	} else if (isNormalInteger(document.getElementById("top_screen").innerHTML)){
-		pressed_number = Math.floor(pressed_number / 10);
-		document.getElementById("top_screen").innerHTML = pressed_number;
-	} else {
-		pressed_number = 0;
-		document.getElementById("top_screen").innerHTML = pressed_number;
-		write_new_number = true;
+	if(mode == 'normal'){
+
+	}else{
+		if (Math.abs(document.getElementById("top_screen").innerHTML) < 10 && (isNormalInteger(document.getElementById("top_screen").innerHTML))){	
+			document.getElementById("top_screen").innerHTML = 0;
+			pressed_number = 0;
+			write_new_number = true;
+		} else if (isNormalInteger(document.getElementById("top_screen").innerHTML)){
+			pressed_number = Math.floor(pressed_number / 10);
+			document.getElementById("top_screen").innerHTML = pressed_number;
+		} else {
+			pressed_number = 0;
+			document.getElementById("top_screen").innerHTML = pressed_number;
+			write_new_number = true;
+		}
 	}
 }
 
@@ -211,25 +242,52 @@ function reset(){
 
 function normal_mode(){
 	reset();
+	mode = 'normal';
 	document.getElementById("normal_btn").style.borderColor = 'red';
 	document.getElementById("acum_btn").style.borderColor = 'black';
 	document.getElementById("normal_btn").classList.remove('animation');
 	document.getElementById("acum_btn").classList.add('animation');
 	document.getElementById("equal_btn").classList.add('animation');
 	document.getElementById("normal_btn").style.cursor = "auto";
+	document.getElementById("equal_btn").style.cursor = "pointer";
 	document.getElementById("acum_btn").style.cursor = "pointer";
 	document.getElementById("equal_btn").style.opacity = 1;
 }
 
 function acum_mode(){
 	reset();
+	mode = 'acum';
 	document.getElementById("normal_btn").style.borderColor = 'black';
 	document.getElementById("acum_btn").style.borderColor = 'red';
 	document.getElementById("normal_btn").classList.add('animation');
 	document.getElementById("acum_btn").classList.remove('animation');
 	document.getElementById("equal_btn").classList.remove('animation');
 	document.getElementById("acum_btn").style.cursor = "auto";
+	document.getElementById("equal_btn").style.cursor = "auto";
 	document.getElementById("acum_btn").style.cursor = "pointer";
 	document.getElementById("equal_btn").style.opacity = 0.5;
 }
 
+function about_mode(){
+	document.getElementById('screen').classList.add('hide');
+	document.getElementById('top_screen').classList.add('hide');
+	const elements = document.getElementsByClassName("btn");
+
+	const length = elements.length;
+	for (let i = 0; i < length; i++) {
+		elements[i].classList.add("hide");
+	}
+	document.getElementById("return_btn").classList.remove('hide');
+}
+
+function return_to_calc(){
+	document.getElementById('screen').classList.remove('hide');
+	document.getElementById('top_screen').classList.remove('hide');
+	const elements = document.getElementsByClassName("btn");
+
+	const length = elements.length;
+	for (let i = 0; i < length; i++) {
+		elements[i].classList.remove("hide");
+	}
+	document.getElementById("return_btn").classList.add('hide');
+}
