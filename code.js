@@ -113,6 +113,8 @@ document.getElementById("seven").addEventListener("click", () => write(7));
 document.getElementById("eight").addEventListener("click", () => write(8));
 document.getElementById("nine").addEventListener("click", () => write(9));
 document.getElementById("dot").addEventListener("click", () => write('.'));
+document.getElementById("open_parenthesis").addEventListener("click", () => write('('));
+document.getElementById("close_parenthesis").addEventListener("click", () => write(')'));
 
 // events: operations
 document.getElementById("add").addEventListener("click", () => add(pressed_number));
@@ -328,8 +330,59 @@ function show_credits(){
 }
 
 function equal (){
-	let result = document.getElementById("top_screen").innerHTML;
-	for (let i = 0; i < result.length; i++) {
- 		alert(result.charAt(i));
+	let expression = document.getElementById("top_screen").innerHTML;
+	parenthesis = validate_parenthesis(expression);
+	if (!parenthesis){
+		alert("sintax error!");
+	} else{
+		document.getElementById("screen").innerHTML = compute_value(expression);
 	}
+}
+
+function compute_value(expression){
+	let result = 0;
+	for (let i = 0; i < expression.length; i++) {
+		
+
+}
+
+function validate_parenthesis(){
+	const expression = document.getElementById("top_screen").innerHTML;
+	let counter = 0;
+	for (let i = 0; i < expression.length; i++) {
+		if (expression.charAt(i) == '(' ){
+			counter++;
+
+		}else if (expression.charAt(i) == ')' ){
+			counter--;
+			if (counter < 0){
+				return false;
+			}
+		}
+   }
+   return (counter==0);
+}
+
+function validate_operands(){
+	const expression = document.getElementById("top_screen").innerHTML;
+	const first = expression.charAt(0);
+	if(expression.length == 0){
+		return true;
+	} else if(true   ){
+
+	}
+
+
+	for (let i = 0; i < expression.length; i++) {
+		if (expression.charAt(i) == '(' ){
+
+
+		}else if (expression.charAt(i) == ')' ){
+
+			if (counter < 0){
+				return false;
+			}
+		}
+   }
+   return (counter==0);
 }
