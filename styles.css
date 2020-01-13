@@ -100,10 +100,10 @@ h1{
 	
 }
 
-#open_parenthesis, #close_parenthesis {
+/*#open_parenthesis, #close_parenthesis {
 	width: 115px;
 	flex: 0 0 auto;
-}
+}*/
 
 #screen{
 	text-align: right;
