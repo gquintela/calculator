@@ -1,28 +1,39 @@
 // global variables
-let acum = 0;
-let pressed_number = 0;
+let acum = "";
+let pressed_number = undefined;
 let screen_value = document.getElementById("screen").innerHTML;
 let write_new_number = true;
-let mode = acum; 
+let mode = "normal"; 
+document.getElementById("top_screen").innerHTML = "";
+document.getElementById("screen").innerHTML = "";
+
+function init_function(){
+	document.getElementById("screen").innerHTML = 0;
+	acum = 0;
+	pressed_number = 0;
+	screen_value = document.getElementById("screen").innerHTML;
+	write_new_number = true;
+	normal_mode();
+}
 
 function write(n) {
 	if (mode == "normal") {
 		if (write_new_number) {
-			document.getElementById("top_screen").innerHTML = n;
+			document.getElementById("screen").innerHTML = n;
 			pressed_number = n;
 			write_new_number = false;
 	}	else{
-			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
-			pressed_number = document.getElementById("top_screen").innerHTML;
+			document.getElementById("screen").innerHTML = document.getElementById("screen").innerHTML.concat(n);
+			pressed_number = document.getElementById("screen").innerHTML;
 		}
 	} else {
 		if (write_new_number) {
-			document.getElementById("top_screen").innerHTML = n;
+			document.getElementById("screen").innerHTML = n;
 			pressed_number = n;
 			write_new_number = false;
 	}	else{
-			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
-			pressed_number = document.getElementById("top_screen").innerHTML;
+			document.getElementById("screen").innerHTML = document.getElementById("screen").innerHTML.concat(n);
+			pressed_number = document.getElementById("screen").innerHTML;
 		}
 	}
 
@@ -32,6 +43,17 @@ function write(n) {
 document.getElementById("double_zero").addEventListener("click", () => write('00'));
 document.getElementById("zero").addEventListener("click", () => write(0));
 document.getElementById("one").addEventListener("click", () => write(1));
+document.getElementById("two").addEventListener("click", () => write(2));
+document.getElementById("three").addEventListener("click", () => write(3));
+document.getElementById("four").addEventListener("click", () => write(4));
+document.getElementById("five").addEventListener("click", () => write(5));
+document.getElementById("six").addEventListener("click", () => write(6));
+document.getElementById("seven").addEventListener("click", () => write(7));
+document.getElementById("eight").addEventListener("click", () => write(8));
+document.getElementById("nine").addEventListener("click", () => write(9));
+document.getElementById("dot").addEventListener("click", () => write('.'));
+// document.getElementById("open_parenthesis").addEventListener("click", () => write('('));
+// document.getElementById("close_parenthesis").addEventListener("click", () => write(')'));
 
 addEventListener("keydown", function(event) {
 	switch(event.keyCode){
@@ -104,17 +126,6 @@ addEventListener("keydown", function(event) {
 	}
 });
 
-document.getElementById("two").addEventListener("click", () => write(2));
-document.getElementById("three").addEventListener("click", () => write(3));
-document.getElementById("four").addEventListener("click", () => write(4));
-document.getElementById("five").addEventListener("click", () => write(5));
-document.getElementById("six").addEventListener("click", () => write(6));
-document.getElementById("seven").addEventListener("click", () => write(7));
-document.getElementById("eight").addEventListener("click", () => write(8));
-document.getElementById("nine").addEventListener("click", () => write(9));
-document.getElementById("dot").addEventListener("click", () => write('.'));
-document.getElementById("open_parenthesis").addEventListener("click", () => write('('));
-document.getElementById("close_parenthesis").addEventListener("click", () => write(')'));
 
 // events: operations
 document.getElementById("add").addEventListener("click", () => add(pressed_number));
@@ -145,13 +156,22 @@ document.getElementById("reset").addEventListener("click", () => reset());
 
 
 
-function init_function(){
-	document.getElementById("screen").innerHTML = 0;	
-}
+
 
 function add(pressed_number){
 	if(mode == 'normal'){
-			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat('+');
+		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
+			acum += parseInt(pressed_number);
+		} else {
+			acum += parseFloat(pressed_number);
+		}
+		if (document.getElementById("top_screen").innerHTML == "0") {
+			document.getElementById("top_screen").innerHTML =  pressed_number + "+";
+		} else{
+			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML + pressed_number + "+";
+		}
+			write_new_number = true;
+			document.getElementById("screen").innerHTML = acum;
 	}else{
 		if (isNormalInteger(pressed_number ) && isNormalInteger(acum) ) {
 			acum += parseInt(pressed_number);
@@ -339,50 +359,20 @@ function equal (){
 	}
 }
 
-function compute_value(expression){
-	let result = 0;
-	for (let i = 0; i < expression.length; i++) {
-		
 
-}
+// function validate_parenthesis(){
+// 	const expression = document.getElementById("top_screen").innerHTML;
+// 	let counter = 0;
+// 	for (let i = 0; i < expression.length; i++) {
+// 		if (expression.charAt(i) == '(' ){
+// 			counter++;
 
-function validate_parenthesis(){
-	const expression = document.getElementById("top_screen").innerHTML;
-	let counter = 0;
-	for (let i = 0; i < expression.length; i++) {
-		if (expression.charAt(i) == '(' ){
-			counter++;
-
-		}else if (expression.charAt(i) == ')' ){
-			counter--;
-			if (counter < 0){
-				return false;
-			}
-		}
-   }
-   return (counter==0);
-}
-
-function validate_operands(){
-	const expression = document.getElementById("top_screen").innerHTML;
-	const first = expression.charAt(0);
-	if(expression.length == 0){
-		return true;
-	} else if(true   ){
-
-	}
-
-
-	for (let i = 0; i < expression.length; i++) {
-		if (expression.charAt(i) == '(' ){
-
-
-		}else if (expression.charAt(i) == ')' ){
-
-			if (counter < 0){
-				return false;
-			}
-		}
-   }
-   return (counter==0);
-}
+// 		}else if (expression.charAt(i) == ')' ){
+// 			counter--;
+// 			if (counter < 0){
+// 				return false;
+// 			}
+// 		}
+//    }
+//    return (counter==0);
+// }
