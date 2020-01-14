@@ -3,7 +3,7 @@ let acum = "";
 let pressed_number = undefined;
 let screen_value = document.getElementById("screen").innerHTML;
 let write_new_number = true;
-let mode = "normal"; 
+let mode = "acum"; 
 document.getElementById("top_screen").innerHTML = "";
 document.getElementById("screen").innerHTML = "";
 
@@ -13,7 +13,7 @@ function init_function(){
 	pressed_number = 0;
 	screen_value = document.getElementById("screen").innerHTML;
 	write_new_number = true;
-	normal_mode();
+	acum_mode();
 }
 
 function write(n) {
@@ -28,7 +28,7 @@ function write(n) {
 		}
 	} else {
 		if (write_new_number) {
-			document.getElementById("screen").innerHTML = n;
+			document.getElementById("top_screen").innerHTML = n;
 			pressed_number = n;
 			write_new_number = false;
 	}	else{
@@ -139,8 +139,8 @@ document.getElementById("equal_btn").addEventListener("click", () => equal(press
 
 
 // events: change mode
-document.getElementById("normal_btn").addEventListener("click", () => normal_mode());
-document.getElementById("acum_btn").addEventListener("click", () => acum_mode());
+// document.getElementById("normal_btn").addEventListener("click", () => normal_mode());
+// document.getElementById("acum_btn").addEventListener("click", () => acum_mode());
 
 //about mode
 document.getElementById("about_btn").addEventListener("click", () => about_mode());
@@ -282,28 +282,28 @@ function reset(){
 function normal_mode(){
 	reset();
 	mode = 'normal';
-	document.getElementById("normal_btn").style.borderColor = 'red';
-	document.getElementById("acum_btn").style.borderColor = 'black';
-	document.getElementById("normal_btn").classList.remove('animation');
-	document.getElementById("acum_btn").classList.add('animation');
+	// document.getElementById("normal_btn").style.borderColor = 'red';
+	// document.getElementById("acum_btn").style.borderColor = 'black';
+	// document.getElementById("normal_btn").classList.remove('animation');
+	// document.getElementById("acum_btn").classList.add('animation');
 	document.getElementById("equal_btn").classList.add('animation');
-	document.getElementById("normal_btn").style.cursor = "auto";
-	document.getElementById("equal_btn").style.cursor = "pointer";
-	document.getElementById("acum_btn").style.cursor = "pointer";
+	// document.getElementById("normal_btn").style.cursor = "auto";
+	// document.getElementById("equal_btn").style.cursor = "pointer";
+	// document.getElementById("acum_btn").style.cursor = "pointer";
 	document.getElementById("equal_btn").style.opacity = 1;
 }
 
 function acum_mode(){
 	reset();
 	mode = 'acum';
-	document.getElementById("normal_btn").style.borderColor = 'black';
-	document.getElementById("acum_btn").style.borderColor = 'red';
-	document.getElementById("normal_btn").classList.add('animation');
-	document.getElementById("acum_btn").classList.remove('animation');
+	// document.getElementById("normal_btn").style.borderColor = 'black';
+	// document.getElementById("acum_btn").style.borderColor = 'red';
+	// document.getElementById("normal_btn").classList.add('animation');
+	// document.getElementById("acum_btn").classList.remove('animation');
 	document.getElementById("equal_btn").classList.remove('animation');
-	document.getElementById("acum_btn").style.cursor = "auto";
-	document.getElementById("equal_btn").style.cursor = "auto";
-	document.getElementById("acum_btn").style.cursor = "pointer";
+	// document.getElementById("acum_btn").style.cursor = "auto";
+	// document.getElementById("equal_btn").style.cursor = "auto";
+	// document.getElementById("acum_btn").style.cursor = "pointer";
 	document.getElementById("equal_btn").style.opacity = 0.5;
 }
 
@@ -335,17 +335,20 @@ function show_calc(){
 function about_mode(){
 	hide_calc();
 	document.getElementById("return_btn").classList.remove('hide');
-	document.getElementById("return_btn").classList.remove('hide');
+	document.getElementById("about_container").classList.remove('hide');
 }
 
 function return_to_calc(){
 	show_calc();
 	document.getElementById("return_btn").classList.add('hide');
+		document.getElementById("credits_container").classList.add('hide');
+		document.getElementById("about_container").classList.add('hide');
 }
 
 function show_credits(){
 	hide_calc();
 	document.getElementById("return_btn").classList.remove('hide');
+	document.getElementById("credits_container").classList.remove('hide');
 
 }
 
