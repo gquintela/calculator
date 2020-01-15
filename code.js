@@ -140,7 +140,7 @@ document.getElementById("div_10").addEventListener("click", () => div_10());
 document.getElementById("multiply").addEventListener("click", () => multiply(pressed_number));
 document.getElementById("division").addEventListener("click", () => division(pressed_number));
 document.getElementById("pow").addEventListener("click", () => pow(pressed_number));
-	// document.getElementById("equal_btn").addEventListener("click", () => equal(pressed_number));
+//document.getElementById("equal_btn").addEventListener("click", () => equal(pressed_number));
 
 
 
@@ -342,19 +342,25 @@ function about_mode(){
 	hide_calc();
 	document.getElementById("return_btn").classList.remove('hide');
 	document.getElementById("about_container").classList.remove('hide');
+	document.getElementById("memory_01").classList.add('hide');
+	document.getElementById("memory_02").classList.add('hide');
 }
 
 function return_to_calc(){
 	show_calc();
 	document.getElementById("return_btn").classList.add('hide');
-		document.getElementById("credits_container").classList.add('hide');
-		document.getElementById("about_container").classList.add('hide');
+	document.getElementById("credits_container").classList.add('hide');
+	document.getElementById("about_container").classList.add('hide');
+	document.getElementById("memory_01").classList.remove('hide');
+	document.getElementById("memory_02").classList.remove('hide');
 }
 
 function show_credits(){
 	hide_calc();
 	document.getElementById("return_btn").classList.remove('hide');
 	document.getElementById("credits_container").classList.remove('hide');
+	document.getElementById("memory_01").classList.add('hide');
+	document.getElementById("memory_02").classList.add('hide');
 
 }
 
