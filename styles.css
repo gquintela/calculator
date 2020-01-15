@@ -15,12 +15,10 @@ img{
 }
 
 #calculator{
-	flex: 1 0 50%;
-	/*position: relative;*/
+	flex: 0 1 30%;
 	z-index: 5;
-	left: center;
 	padding: 4px;
-	width: 25%;
+	width: auto;
 	margin: auto;
 	opacity: 0.95;
 	border:5px groove #999ce3;
@@ -63,14 +61,14 @@ p{
 	margin: auto;
 	float: center;
 	display: inline;
-		opacity: 0.95;
+	opacity: 0.95;
 	border:5px groove #999ce3;
 	border-radius: 20px;
 	background-color :rgba(100, 100, 100, 0.6);
 }
 
 h2 {
-	display: inline-block;
+	display: block;
 	font-size: 40px;
 	padding-top: 00px;
 	margin: auto!important;
@@ -81,6 +79,7 @@ h2 {
 }
 
 .btn{
+	flex: 1 1;
     font-size:35px;
     padding:15px;
     margin: 1px;
@@ -125,15 +124,16 @@ h2 {
 }
 
 #return_btn{
-	position: relative;
+	flex: 0 1;
+	z-index: 800;
 	width: 80px;
-	margin: auto;              /* new */
+	margin: auto;
 	cursor: pointer;
 }
 
 #div_10{
 	clear: both;
-	flex: 2 1 50%;
+	flex: 1 1 25%;
 }
 
 /*#open_parenthesis, #close_parenthesis {
@@ -191,12 +191,15 @@ h2 {
 
 #main_container{
 	display: flex;
-	width: 50%;
+	flex-wrap: wrap;
+	width: 1300px;
 	margin: auto;
-
+	z-index: 915000;
+	background: green;
 }
 
 #memory_01, #memory_02{
+	flex: 1 1 0%; 
 	height: auto;
 	z-index: 5;
 	align-self: center;
@@ -208,12 +211,18 @@ h2 {
 	background-color :rgba(100, 100, 100, 0.6);
 }
 
+.memory_tittle{
+	text-align: center;
+}
+
 .memory_btn{
 	font-size: 20px;
+	flex: 0 2;
+	margin: auto;
+	justify-content: center;
 }
 
 #memory_01_clear, #memory_02_clear{
-	display: inline-block!important;
+	/*display: block!important;*/
 	margin: auto;
-/*	align-self: center;*/
 }
