@@ -9,53 +9,79 @@
 <body onload='init_function()'>
 	<img src="background.jpg">
 	<h1>A CALCULATOR</h1>
-
-	<div id="calculator">
-		<div id="top_screen"></div>
-		<div id="screen"></div>
-<!-- 		<div class="flex">
-			<div class="btn animation" id="open_parenthesis">(</div>
-			<div class="btn animation" id="close_parenthesis">)</div>
-			<div class="btn animation" id="pow">^</div>
-			<div class="btn animation" id="substract">-</div>
-		</div> -->
-		<div class="flex">
-			<div class="btn animation" id="div_10"><--</div>
-			<div class="btn animation" id="division">/</div>
-			<div class="btn animation" id="pow">^</div>
-			<div class="btn animation" id="substract">-</div>
+	<div id="main_container">
+		<div id="memory_01">
+			<h2>MEMORY 1</h2>
+			<div class="screen_memory" id="screen_memory_01">0</div>
+			<div class="flex">
+				<div class="btn animation memory_btn" id="memory_01_store">STORE</div>
+				<div class="btn animation memory_btn" id="memory_01_load">LOAD</div>
+				<!-- <div class="btn animation memory_btn" id="memory_01_clear">CLEAR</div> -->
+			</div>
+			<div class="flex">
+<!-- 				<div class="btn animation memory_btn" id="memory_01_store">STORE</div>
+				<div class="btn animation memory_btn" id="memory_01_load">LOAD</div> -->
+				<div class="btn animation memory_btn" id="memory_01_clear">CLEAR</div>
+			</div>
 		</div>
-		<div class="flex">
-			<div class="btn animation" id="seven">7</div>
-			<div class="btn animation" id="eight">8</div>
-			<div class="btn animation" id="nine">9</div>
-			<div class="btn animation" id="add">+</div>
+		<div id="calculator">
+			<div id="top_screen"></div>
+			<div id="screen"></div>
+	<!-- 		<div class="flex">
+				<div class="btn animation" id="open_parenthesis">(</div>
+				<div class="btn animation" id="close_parenthesis">)</div>
+				<div class="btn animation" id="pow">^</div>
+				<div class="btn animation" id="substract">-</div>
+			</div> -->
+			<div class="flex">
+				<div class="btn animation" id="div_10"><--</div>
+				<div class="btn animation" id="division">/</div>
+				<div class="btn animation" id="pow">^</div>
+				
+			</div>
+			<div class="flex">
+				<div class="btn animation" id="seven">7</div>
+				<div class="btn animation" id="eight">8</div>
+				<div class="btn animation" id="nine">9</div>
+				<div class="btn animation" id="add">+</div>
+			</div>
+			<div class="flex">
+				<div class="btn animation" id="four">4</div>
+				<div class="btn animation" id="five">5</div>
+				<div class="btn animation" id="six">6</div>
+				<div class="btn animation" id="multiply">x</div>
+			</div>
+			<div class="flex">
+				<div class="btn animation" id="one">1</div>
+				<div class="btn animation" id="two">2</div>
+				<div class="btn animation" id="three">3</div>
+				<div class="btn animation" id="substract">-</div>
+				
+			</div>
+			<div class="flex">
+				<div class="btn animation" id="zero">0</div>
+				<div class="btn animation" id="double_zero">00</div>
+				<div class="btn animation" id="dot">.</div>
+				<div class="btn animation" id="reset">C</div>
+			</div>
+			<div class="flex">
+	<!-- 			<div class="btn" id="acum_btn">ACUM</div>
+				<div class="btn animation" id="normal_btn">NORMAL</div> -->
+				<div class="btn animation" id="about_btn">ABOUT</div>
+				<div class="btn animation" id="credits_btn">CREDITS</div>
+			</div>
 		</div>
-		<div class="flex">
-			<div class="btn animation" id="four">4</div>
-			<div class="btn animation" id="five">5</div>
-			<div class="btn animation" id="six">6</div>
-			<div class="btn animation" id="multiply">x</div>
+<div id="memory_02">
+			<h2>MEMORY 2</h2>
+			<div class="screen_memory" id="screen_memory_02">0</div>
+			<div class="flex">
+				<div class="btn animation memory_btn" id="memory_02_store">STORE</div>
+				<div class="btn animation memory_btn" id="memory_02_load">LOAD</div>
+			</div>
+			<div class="flex">
+				<div class="btn animation memory_btn" id="memory_02_clear">CLEAR</div>
+			</div>
 		</div>
-		<div class="flex">
-			<div class="btn animation" id="one">1</div>
-			<div class="btn animation" id="two">2</div>
-			<div class="btn animation" id="three">3</div>
-			<div class="btn" id="equal_btn">=</div>
-		</div>
-		<div class="flex">
-			<div class="btn animation" id="zero">0</div>
-			<div class="btn animation" id="double_zero">00</div>
-			<div class="btn animation" id="dot">.</div>
-			<div class="btn animation" id="reset">C</div>
-		</div>
-		<div class="flex">
-<!-- 			<div class="btn" id="acum_btn">ACUM</div>
-			<div class="btn animation" id="normal_btn">NORMAL</div> -->
-			<div class="btn animation" id="about_btn">ABOUT</div>
-			<div class="btn animation" id="credits_btn">CREDITS</div>
-		</div>
-	</div>
 		<div class="hide" id="credits_container">
 			<H2>CREDITS</H2>
 			<p>Created by Gonzalo Quintela <br>
