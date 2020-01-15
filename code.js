@@ -23,8 +23,8 @@ function write(n) {
 			pressed_number = n;
 			write_new_number = false;
 	}	else{
-			document.getElementById("screen").innerHTML = document.getElementById("screen").innerHTML.concat(n);
-			pressed_number = document.getElementById("screen").innerHTML;
+			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
+			pressed_number = document.getElementById("top_screen").innerHTML;
 		}
 	} else {
 		if (write_new_number) {
@@ -54,6 +54,12 @@ document.getElementById("nine").addEventListener("click", () => write(9));
 document.getElementById("dot").addEventListener("click", () => write('.'));
 // document.getElementById("open_parenthesis").addEventListener("click", () => write('('));
 // document.getElementById("close_parenthesis").addEventListener("click", () => write(')'));
+document.getElementById("memory_01_store").addEventListener("click", () => store_01());
+document.getElementById("memory_02_store").addEventListener("click", () => store_02());
+document.getElementById("memory_01_load").addEventListener("click", () => load_01());
+document.getElementById("memory_02_load").addEventListener("click", () => load_02());
+document.getElementById("memory_01_clear").addEventListener("click", () => clear_01());
+document.getElementById("memory_02_clear").addEventListener("click", () => clear_02());
 
 addEventListener("keydown", function(event) {
 	switch(event.keyCode){
@@ -134,7 +140,7 @@ document.getElementById("div_10").addEventListener("click", () => div_10());
 document.getElementById("multiply").addEventListener("click", () => multiply(pressed_number));
 document.getElementById("division").addEventListener("click", () => division(pressed_number));
 document.getElementById("pow").addEventListener("click", () => pow(pressed_number));
-document.getElementById("equal_btn").addEventListener("click", () => equal(pressed_number));
+	// document.getElementById("equal_btn").addEventListener("click", () => equal(pressed_number));
 
 
 
@@ -286,7 +292,7 @@ function normal_mode(){
 	// document.getElementById("acum_btn").style.borderColor = 'black';
 	// document.getElementById("normal_btn").classList.remove('animation');
 	// document.getElementById("acum_btn").classList.add('animation');
-	document.getElementById("equal_btn").classList.add('animation');
+	// document.getElementById("equal_btn").classList.add('animation');
 	// document.getElementById("normal_btn").style.cursor = "auto";
 	// document.getElementById("equal_btn").style.cursor = "pointer";
 	// document.getElementById("acum_btn").style.cursor = "pointer";
@@ -300,11 +306,11 @@ function acum_mode(){
 	// document.getElementById("acum_btn").style.borderColor = 'red';
 	// document.getElementById("normal_btn").classList.add('animation');
 	// document.getElementById("acum_btn").classList.remove('animation');
-	document.getElementById("equal_btn").classList.remove('animation');
+	// document.getElementById("equal_btn").classList.remove('animation');
 	// document.getElementById("acum_btn").style.cursor = "auto";
 	// document.getElementById("equal_btn").style.cursor = "auto";
 	// document.getElementById("acum_btn").style.cursor = "pointer";
-	document.getElementById("equal_btn").style.opacity = 0.5;
+	// document.getElementById("equal_btn").style.opacity = 0.5;
 }
 
 function hide_calc(){
@@ -379,3 +385,33 @@ function equal (){
 //    }
 //    return (counter==0);
 // }
+
+// document.getElementById("memory_01_store").addEventListener("click", () => store_01());
+
+function store_01(){
+	document.getElementById("screen_memory_01").innerHTML = document.getElementById("screen").innerHTML;
+}
+
+function store_02(){
+	document.getElementById("screen_memory_02").innerHTML = document.getElementById("screen").innerHTML;
+}
+
+function clear_01(){
+	document.getElementById("screen_memory_01").innerHTML = 0;
+}
+
+function clear_02(){
+	document.getElementById("screen_memory_02").innerHTML = 0;
+}
+
+function load_01(){
+	document.getElementById("top_screen").innerHTML = document.getElementById("screen_memory_01").innerHTML;
+	pressed_number = document.getElementById("screen_memory_01").innerHTML;
+	write_new_number = false;
+}
+
+function load_02(){
+	document.getElementById("top_screen").innerHTML = document.getElementById("screen_memory_02").innerHTML;
+	pressed_number = document.getElementById("screen_memory_02").innerHTML;
+	write_new_number = false;
+}
