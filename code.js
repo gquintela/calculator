@@ -32,8 +32,8 @@ function write(n) {
 			pressed_number = n;
 			write_new_number = false;
 	}	else{
-			document.getElementById("screen").innerHTML = document.getElementById("screen").innerHTML.concat(n);
-			pressed_number = document.getElementById("screen").innerHTML;
+			document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat(n);
+			pressed_number = document.getElementById("top_screen").innerHTML;
 		}
 	}
 
