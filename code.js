@@ -60,6 +60,7 @@ document.getElementById("memory_01_load").addEventListener("click", () => load_0
 document.getElementById("memory_02_load").addEventListener("click", () => load_02());
 document.getElementById("memory_01_clear").addEventListener("click", () => clear_01());
 document.getElementById("memory_02_clear").addEventListener("click", () => clear_02());
+document.getElementById("copy_btn").addEventListener("click", () => copy_to_clipboard());
 
 addEventListener("keydown", function(event) {
 	switch(event.keyCode){
@@ -128,6 +129,8 @@ addEventListener("keydown", function(event) {
 		case 110:
 		case 190:
 			write('.');
+		case 67:
+			copy_to_clipboard();			
 			break;
 	}
 });
@@ -420,4 +423,14 @@ function load_02(){
 	document.getElementById("top_screen").innerHTML = document.getElementById("screen_memory_02").innerHTML;
 	pressed_number = document.getElementById("screen_memory_02").innerHTML;
 	write_new_number = false;
+}
+
+function copy_to_clipboard(){
+	let elm = document.getElementById("screen");
+	let selection = window.getSelection();
+	let range = document.createRange();
+	range.selectNodeContents(elm);
+	selection.removeAllRanges();
+	selection.addRange(range);
+	document.execCommand("Copy");
 }
