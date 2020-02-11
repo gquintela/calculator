@@ -52,8 +52,6 @@ document.getElementById("seven").addEventListener("click", () => write(7));
 document.getElementById("eight").addEventListener("click", () => write(8));
 document.getElementById("nine").addEventListener("click", () => write(9));
 document.getElementById("dot").addEventListener("click", () => write('.'));
-// document.getElementById("open_parenthesis").addEventListener("click", () => write('('));
-// document.getElementById("close_parenthesis").addEventListener("click", () => write(')'));
 document.getElementById("memory_01_store").addEventListener("click", () => store_01());
 document.getElementById("memory_02_store").addEventListener("click", () => store_02());
 document.getElementById("memory_01_load").addEventListener("click", () => load_01());
@@ -61,6 +59,7 @@ document.getElementById("memory_02_load").addEventListener("click", () => load_0
 document.getElementById("memory_01_clear").addEventListener("click", () => clear_01());
 document.getElementById("memory_02_clear").addEventListener("click", () => clear_02());
 document.getElementById("copy_btn").addEventListener("click", () => copy_to_clipboard());
+document.getElementById("paste_btn").addEventListener("click", () => paste_from_clipboard());
 
 addEventListener("keydown", function(event) {
 	switch(event.keyCode){
@@ -143,13 +142,9 @@ document.getElementById("div_10").addEventListener("click", () => div_10());
 document.getElementById("multiply").addEventListener("click", () => multiply(pressed_number));
 document.getElementById("division").addEventListener("click", () => division(pressed_number));
 document.getElementById("pow").addEventListener("click", () => pow(pressed_number));
-//document.getElementById("equal_btn").addEventListener("click", () => equal(pressed_number));
 
 
 
-// events: change mode
-// document.getElementById("normal_btn").addEventListener("click", () => normal_mode());
-// document.getElementById("acum_btn").addEventListener("click", () => acum_mode());
 
 //about mode
 document.getElementById("about_btn").addEventListener("click", () => about_mode());
@@ -291,52 +286,19 @@ function reset(){
 function normal_mode(){
 	reset();
 	mode = 'normal';
-	// document.getElementById("normal_btn").style.borderColor = 'red';
-	// document.getElementById("acum_btn").style.borderColor = 'black';
-	// document.getElementById("normal_btn").classList.remove('animation');
-	// document.getElementById("acum_btn").classList.add('animation');
-	// document.getElementById("equal_btn").classList.add('animation');
-	// document.getElementById("normal_btn").style.cursor = "auto";
-	// document.getElementById("equal_btn").style.cursor = "pointer";
-	// document.getElementById("acum_btn").style.cursor = "pointer";
 	document.getElementById("equal_btn").style.opacity = 1;
 }
 
 function acum_mode(){
 	reset();
 	mode = 'acum';
-	// document.getElementById("normal_btn").style.borderColor = 'black';
-	// document.getElementById("acum_btn").style.borderColor = 'red';
-	// document.getElementById("normal_btn").classList.add('animation');
-	// document.getElementById("acum_btn").classList.remove('animation');
-	// document.getElementById("equal_btn").classList.remove('animation');
-	// document.getElementById("acum_btn").style.cursor = "auto";
-	// document.getElementById("equal_btn").style.cursor = "auto";
-	// document.getElementById("acum_btn").style.cursor = "pointer";
-	// document.getElementById("equal_btn").style.opacity = 0.5;
 }
 
 function hide_calc(){
-	// document.getElementById('screen').classList.add('hide');
-	// document.getElementById('top_screen').classList.add('hide');
-	// const elements = document.getElementsByClassName("btn");
-
-	// const length = elements.length;
-	// for (let i = 0; i < length; i++) {
-	// 	elements[i].classList.add("hide");
-	// }
 	document.getElementById("calculator").classList.add('hide');
 }
 
 function show_calc(){
-	// document.getElementById('screen').classList.remove('hide');
-	// document.getElementById('top_screen').classList.remove('hide');
-	// const elements = document.getElementsByClassName("btn");
-
-	// const length = elements.length;
-	// for (let i = 0; i < length; i++) {
-	// 	elements[i].classList.remove("hide");
-	// }
 	document.getElementById("calculator").classList.remove('hide');
 }
 
@@ -377,26 +339,6 @@ function equal (){
 	}
 }
 
-
-// function validate_parenthesis(){
-// 	const expression = document.getElementById("top_screen").innerHTML;
-// 	let counter = 0;
-// 	for (let i = 0; i < expression.length; i++) {
-// 		if (expression.charAt(i) == '(' ){
-// 			counter++;
-
-// 		}else if (expression.charAt(i) == ')' ){
-// 			counter--;
-// 			if (counter < 0){
-// 				return false;
-// 			}
-// 		}
-//    }
-//    return (counter==0);
-// }
-
-// document.getElementById("memory_01_store").addEventListener("click", () => store_01());
-
 function store_01(){
 	document.getElementById("screen_memory_01").innerHTML = document.getElementById("screen").innerHTML;
 }
@@ -434,3 +376,11 @@ function copy_to_clipboard(){
 	selection.addRange(range);
 	document.execCommand("Copy");
 }
+
+async function paste_from_clipboard(){
+  const value = await navigator.clipboard.readText();
+  document.getElementById("top_screen").innerHTML = value;
+  pressed_number = value;
+  let write_new_number = true;
+  }
+
