@@ -61,75 +61,103 @@ document.getElementById("memory_02_clear").addEventListener("click", () => clear
 document.getElementById("copy_btn").addEventListener("click", () => copy_to_clipboard());
 document.getElementById("paste_btn").addEventListener("click", () => paste_from_clipboard());
 
+function animation_keyboard(key){
+	document.getElementById(key).classList.add('key_pressed');
+	setTimeout( () => document.getElementById(key).classList.remove('key_pressed'), 100);
+}
+
 addEventListener("keydown", function(event) {
 	switch(event.keyCode){
 		case 48:
 		case 96:
 			write(0);
+			animation_keyboard("zero");
 			break;
 		case 49:
 		case 97:
 			write(1);
+			animation_keyboard("one");
 			break;
 		case 50:
 		case 98:
 			write(2);
+			animation_keyboard("two");
 			break;
 		case 51:
 		case 99:
 			write(3);
+			animation_keyboard("three");
 			break;
 		case 52:
 		case 100:
 			write(4);
+			animation_keyboard("four");
 			break;
 		case 53:
 		case 101:
 			write(5);
+			animation_keyboard("five");
 			break;
 		case 54:
 		case 102:
 			write(6);
+			animation_keyboard("six");
 			break;
 		case 55:
 		case 103:
 			write(7);
+			animation_keyboard("seven");
 			break;
 		case 56:
 		case 104:
 			write(8);
+			animation_keyboard("eight");
 			break;
 		case 57:
 		case 105:
 			write(9);
+			animation_keyboard("nine");
 			break;
 		case 107:
 		case 187:
 			add(pressed_number);
+			animation_keyboard("add");
 			break;
 		case 109:
 		case 189:
 			substract(pressed_number);
+			animation_keyboard("substract");
 			break;
 		case 56:
 		case 106:
 			multiply(pressed_number);
+			animation_keyboard("multiply");
 			break;
 		case 111:
 		case 191:
-			division(pressed_number);
+			divide(pressed_number);
+			animation_keyboard("divide");
 			break;
 		case 27:
 			reset();
+			animation_keyboard("reset");
 			break;
 		case 8:
 			div_10(pressed_number);
+			animation_keyboard("div_10");
 			break;
 		case 110:
 		case 190:
 			write('.');
+			animation_keyboard("dot");
+			break;
 		case 67:
-			copy_to_clipboard();			
+			copy_to_clipboard();
+			animation_keyboard("copy_btn");			
+			break;
+		case 86:
+			paste_from_clipboard();	
+			animation_keyboard("paste_btn");		
 			break;
 	}
 });
@@ -140,7 +168,7 @@ document.getElementById("add").addEventListener("click", () => add(pressed_numbe
 document.getElementById("substract").addEventListener("click", () => substract(pressed_number));
 document.getElementById("div_10").addEventListener("click", () => div_10());
 document.getElementById("multiply").addEventListener("click", () => multiply(pressed_number));
-document.getElementById("division").addEventListener("click", () => division(pressed_number));
+document.getElementById("divide").addEventListener("click", () => divide(pressed_number));
 document.getElementById("pow").addEventListener("click", () => pow(pressed_number));
 
 
@@ -215,7 +243,7 @@ function multiply(pressed_number){
 	}
 }
 
-function division(pressed_number){
+function divide(pressed_number){
 	if(mode == 'normal'){
 		document.getElementById("top_screen").innerHTML = document.getElementById("top_screen").innerHTML.concat('/');
 	}else{
@@ -368,6 +396,7 @@ function load_02(){
 }
 
 function copy_to_clipboard(){
+	
 	let elm = document.getElementById("screen");
 	let selection = window.getSelection();
 	let range = document.createRange();
@@ -375,6 +404,8 @@ function copy_to_clipboard(){
 	selection.removeAllRanges();
 	selection.addRange(range);
 	document.execCommand("Copy");
+	setTimeout( () => selection.removeAllRanges() , 250); // visual effect to copy
+	
 }
 
 async function paste_from_clipboard(){
