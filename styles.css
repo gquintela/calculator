@@ -98,6 +98,14 @@ h2 {
                                   supported by Chrome, Opera and Firefox */
 }
 
+
+
+.flex_memory {
+		/*flex: 0 1 10%;*/
+		display: flex;
+		justify-content: center;
+}
+
 .animation:hover {
 	background: rgb(182,182,182);
 	background: radial-gradient(circle, #999ce3 0%,
@@ -154,7 +162,7 @@ h2 {
 }
 
 .screen_memory{
-	width: 50%;
+	width: 80%;
 	text-align: right;
     font-size:40px;
 	padding: 5px;
@@ -178,6 +186,12 @@ h2 {
 }
 
 .animation:active{
+	background: rgb(18,35,240);
+	background: radial-gradient(circle, rgba(18,35,240,1) 0%,
+	rgba(140,202,213,1) 35%, rgba(59,85,219,1) 100%);
+}
+
+.key_pressed{
 	background: rgb(18,35,240);
 	background: radial-gradient(circle, rgba(18,35,240,1) 0%,
 	rgba(140,202,213,1) 35%, rgba(59,85,219,1) 100%);
@@ -218,11 +232,15 @@ h2 {
 .memory_btn{
 	font-size: 20px;
 	flex: 0 2;
-	margin: auto;
+	margin: 1px;
 	justify-content: center;
 }
 
 #memory_01_clear, #memory_02_clear{
 	/*display: block!important;*/
 	margin: auto;
+}
+
+#copy_btn, #paste_btn {
+	font-size: 20px;
 }
