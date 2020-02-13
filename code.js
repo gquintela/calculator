@@ -7,6 +7,24 @@ let mode = "acum";
 document.getElementById("top_screen").innerHTML = "";
 document.getElementById("screen").innerHTML = "";
 
+	let counter = 0;
+	let nIntervId = null;
+function flash_how_to_use(time){
+	nIntervId = setInterval(flash_how_to_use_aux, time);
+}
+
+function flash_how_to_use_aux(){
+	let element = document.getElementById("how_to_use_btn");
+	if(counter < 4 ){
+		element.classList.contains("key_pressed") ? element.classList.remove("key_pressed") : element.classList.add("key_pressed");
+		counter ++;
+	} else {
+		clearInterval(nIntervId);
+		element.classList.remove("key_pressed");
+	}
+}
+
+
 function init_function(){
 	document.getElementById("screen").innerHTML = 0;
 	acum = 0;
@@ -14,6 +32,8 @@ function init_function(){
 	screen_value = document.getElementById("screen").innerHTML;
 	write_new_number = true;
 	acum_mode();
+	flash_how_to_use(750);
+
 }
 
 function write(n) {
@@ -61,9 +81,11 @@ document.getElementById("memory_02_clear").addEventListener("click", () => clear
 document.getElementById("copy_btn").addEventListener("click", () => copy_to_clipboard());
 document.getElementById("paste_btn").addEventListener("click", () => paste_from_clipboard());
 
-function animation_keyboard(key){
+
+const default_time = 100;
+function animation_keyboard(key, time){
 	document.getElementById(key).classList.add('key_pressed');
-	setTimeout( () => document.getElementById(key).classList.remove('key_pressed'), 100);
+	setTimeout( () => document.getElementById(key).classList.remove('key_pressed'), time);
 }
 
 addEventListener("keydown", function(event) {
@@ -71,93 +93,93 @@ addEventListener("keydown", function(event) {
 		case 48:
 		case 96:
 			write(0);
-			animation_keyboard("zero");
+			animation_keyboard("zero", default_time);
 			break;
 		case 49:
 		case 97:
 			write(1);
-			animation_keyboard("one");
+			animation_keyboard("one", default_time);
 			break;
 		case 50:
 		case 98:
 			write(2);
-			animation_keyboard("two");
+			animation_keyboard("two", default_time);
 			break;
 		case 51:
 		case 99:
 			write(3);
-			animation_keyboard("three");
+			animation_keyboard("three", default_time);
 			break;
 		case 52:
 		case 100:
 			write(4);
-			animation_keyboard("four");
+			animation_keyboard("four", default_time);
 			break;
 		case 53:
 		case 101:
 			write(5);
-			animation_keyboard("five");
+			animation_keyboard("five", default_time);
 			break;
 		case 54:
 		case 102:
 			write(6);
-			animation_keyboard("six");
+			animation_keyboard("six", default_time);
 			break;
 		case 55:
 		case 103:
 			write(7);
-			animation_keyboard("seven");
+			animation_keyboard("seven", default_time);
 			break;
 		case 56:
 		case 104:
 			write(8);
-			animation_keyboard("eight");
+			animation_keyboard("eight", default_time);
 			break;
 		case 57:
 		case 105:
 			write(9);
-			animation_keyboard("nine");
+			animation_keyboard("nine", default_time);
 			break;
 		case 107:
 		case 187:
 			add(pressed_number);
-			animation_keyboard("add");
+			animation_keyboard("add", default_time);
 			break;
 		case 109:
 		case 189:
 			substract(pressed_number);
-			animation_keyboard("substract");
+			animation_keyboard("substract", default_time);
 			break;
 		case 56:
 		case 106:
 			multiply(pressed_number);
-			animation_keyboard("multiply");
+			animation_keyboard("multiply", default_time);
 			break;
 		case 111:
 		case 191:
 			divide(pressed_number);
-			animation_keyboard("divide");
+			animation_keyboard("divide", default_time);
 			break;
 		case 27:
 			reset();
-			animation_keyboard("reset");
+			animation_keyboard("reset", default_time);
 			break;
 		case 8:
 			div_10(pressed_number);
-			animation_keyboard("div_10");
+			animation_keyboard("div_10", default_time);
 			break;
 		case 110:
 		case 190:
 			write('.');
-			animation_keyboard("dot");
+			animation_keyboard("dot", default_time);
 			break;
 		case 67:
 			copy_to_clipboard();
-			animation_keyboard("copy_btn");			
+			animation_keyboard("copy_btn", default_time);			
 			break;
 		case 86:
 			paste_from_clipboard();	
-			animation_keyboard("paste_btn");		
+			animation_keyboard("paste_btn", default_time);		
 			break;
 	}
 });
@@ -174,8 +196,8 @@ document.getElementById("pow").addEventListener("click", () => pow(pressed_numbe
 
 
 
-//about mode
-document.getElementById("about_btn").addEventListener("click", () => about_mode());
+//how_to_use mode
+document.getElementById("how_to_use_btn").addEventListener("click", () => how_to_use_mode());
 
 //credits
 document.getElementById("credits_btn").addEventListener("click", () => show_credits());
@@ -331,10 +353,10 @@ function show_calc(){
 }
 
 
-function about_mode(){
+function how_to_use_mode(){
 	hide_calc();
 	document.getElementById("return_btn").classList.remove('hide');
-	document.getElementById("about_container").classList.remove('hide');
+	document.getElementById("how_to_use_container").classList.remove('hide');
 	document.getElementById("memory_01").classList.add('hide');
 	document.getElementById("memory_02").classList.add('hide');
 }
@@ -343,7 +365,7 @@ function return_to_calc(){
 	show_calc();
 	document.getElementById("return_btn").classList.add('hide');
 	document.getElementById("credits_container").classList.add('hide');
-	document.getElementById("about_container").classList.add('hide');
+	document.getElementById("how_to_use_container").classList.add('hide');
 	document.getElementById("memory_01").classList.remove('hide');
 	document.getElementById("memory_02").classList.remove('hide');
 }
